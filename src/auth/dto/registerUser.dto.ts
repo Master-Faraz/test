@@ -1,6 +1,9 @@
-export class registerDTO{
-    fname :string;
-    lname: string;
-    email : string;
-    password:string;
+
+export class registerDTO {
+    id: string
+    name: string
+    email: string;
+    password: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
