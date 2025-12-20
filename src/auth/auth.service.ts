@@ -9,9 +9,10 @@ export class AuthService {
 
     // dto contails all the credentials 
     async registerUser(registerUserDTO: registerDTO) {
-        // hashing the password
-        const hash = await bcrypt.hash(registerUserDTO.password, 10)
 
-        return this.userService.createUser({...registerUserDTO, password: hash })
+        // hashing the password  
+        const hash = await bcrypt.hash(registerUserDTO.password, 10)
+        // Creating the user 
+        return this.userService.registerUser({ ...registerUserDTO, password: hash })
     }
 }
