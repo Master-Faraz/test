@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -20,12 +21,14 @@ export class UserService {
             const [user] = await this.dbService.getDb()
                 .insert(schema.users)           // Insert into users table
                 .values(registerUserDto)               // With this data
-                .returning();
+                .returning(); //.   IMPORTANT TO GET THE data from the drizzle orm
 
-            return { user }
+            // console.log(user)
+            return user as registerDTO
+
         }
         catch (error: unknown) {
-            const DUPLICATE_KEY_ERROR_CODE ='23505'
+            const DUPLICATE_KEY_ERROR_CODE = '23505'
             console.log(error);
 
             const pgError = (error as any)?.cause;

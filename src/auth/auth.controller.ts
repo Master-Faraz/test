@@ -15,7 +15,7 @@ export class AuthController {
     @Post('register')
     async register(@Body() registerUserDTO: registerDTO) {
         // console.log(registerUserDTO)
-        const createdUser = await this.authservice.registerUser(registerUserDTO)
-        return createdUser
+        const jwt_token = await this.authservice.registerUser(registerUserDTO)
+        return jwt_token
     }
 }
